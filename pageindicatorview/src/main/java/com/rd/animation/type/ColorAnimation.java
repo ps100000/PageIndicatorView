@@ -11,7 +11,7 @@ import com.rd.animation.data.type.ColorAnimationValue;
 
 public class ColorAnimation extends BaseAnimation<ValueAnimator> {
 
-    public static final String DEFAULT_UNSELECTED_COLOR = "#33ffffff";
+    public static final String DEFAULT_UNSELECTED_COLOR = "#c0ffffff";
     public static final String DEFAULT_SELECTED_COLOR = "#ffffff";
 
     static final String ANIMATION_COLOR_REVERSE = "ANIMATION_COLOR_REVERSE";

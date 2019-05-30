@@ -12,10 +12,15 @@ import com.rd.draw.data.Orientation;
 public class WormDrawer extends BaseDrawer {
 
     public RectF rect;
+    private Paint strokePaint;
 
     public WormDrawer(@NonNull Paint paint, @NonNull Indicator indicator) {
         super(paint, indicator);
         rect = new RectF();
+
+        strokePaint = new Paint();
+        strokePaint.setStyle(Paint.Style.STROKE);
+        strokePaint.setAntiAlias(true);
     }
 
     public void draw(
@@ -49,8 +54,9 @@ public class WormDrawer extends BaseDrawer {
             rect.bottom = rectEnd;
         }
 
-        paint.setColor(unselectedColor);
-        canvas.drawCircle(coordinateX, coordinateY, radius, paint);
+        strokePaint.setColor(unselectedColor);
+        strokePaint.setStrokeWidth(3);
+        canvas.drawCircle(coordinateX, coordinateY, radius - 3, strokePaint);
 
         paint.setColor(selectedColor);
         canvas.drawRoundRect(rect, radius, radius, paint);

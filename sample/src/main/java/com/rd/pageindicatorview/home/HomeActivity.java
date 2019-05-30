@@ -7,7 +7,10 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+
 import com.rd.PageIndicatorView;
+import com.rd.animation.type.AnimationType;
 import com.rd.pageindicatorview.base.BaseActivity;
 import com.rd.pageindicatorview.customize.CustomizeActivity;
 import com.rd.pageindicatorview.data.Customization;
@@ -61,18 +64,57 @@ public class HomeActivity extends BaseActivity {
 
     @SuppressWarnings("ConstantConditions")
     private void initViews() {
-        HomeAdapter adapter = new HomeAdapter();
-        adapter.setData(createPageList());
+        HomeAdapter adapter1 = new HomeAdapter();
+        adapter1.setData(createPageList1());
 
-        final ViewPager pager = findViewById(R.id.viewPager);
-        pager.setAdapter(adapter);
+        ViewPager pager = findViewById(R.id.viewPager1);
+        pager.setAdapter(adapter1);
+        Button btn = findViewById(R.id.button_top);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ViewPager pager = findViewById(R.id.viewPager1);
+                pageIndicatorView.setViewPager(pager);
+                //pageIndicatorView.setFadeOnIdle(false);
+                //pageIndicatorView.setFadeOnIdle(true);
+            }
+        });
+
+        HomeAdapter adapter2 = new HomeAdapter();
+        adapter2.setData(createPageList2());
+        pager = findViewById(R.id.viewPager2);
+        pager.setAdapter(adapter2);
+        btn = findViewById(R.id.button_bottom);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ViewPager pager = findViewById(R.id.viewPager2);
+                pageIndicatorView.setViewPager(pager);
+                //pageIndicatorView.setFadeOnIdle(false);
+                //pageIndicatorView.setFadeOnIdle(true);
+            }
+        });
 
         pageIndicatorView = findViewById(R.id.pageIndicatorView);
+        pageIndicatorView.setAnimationType(AnimationType.WORM);
+        pageIndicatorView.setFadeOnIdle(true);
     }
 
     @NonNull
-    private List<View> createPageList() {
+    private List<View> createPageList1() {
         List<View> pageList = new ArrayList<>();
+        pageList.add(createPageView(R.color.google_red));
+        pageList.add(createPageView(R.color.google_blue));
+        pageList.add(createPageView(R.color.google_yellow));
+        //pageList.add(createPageView(R.color.google_green));
+
+        return pageList;
+    }
+
+    @NonNull
+    private List<View> createPageList2() {
+        List<View> pageList = new ArrayList<>();
+        pageList.add(createPageView(R.color.google_green));
         pageList.add(createPageView(R.color.google_red));
         pageList.add(createPageView(R.color.google_blue));
         pageList.add(createPageView(R.color.google_yellow));

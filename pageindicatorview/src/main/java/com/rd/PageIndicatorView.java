@@ -527,6 +527,11 @@ public class PageIndicatorView extends View implements ViewPager.OnPageChangeLis
 
         setDynamicCount(manager.indicator().isDynamicCount());
         updateState();
+        if (manager.indicator().isFadeOnIdle()) {
+            stopIdleRunnable();
+            startIdleRunnable();
+        }
+        manager.animate().basic();
     }
 
     /**

@@ -55,7 +55,14 @@ public class BasicDrawer extends BaseDrawer {
             paint = this.paint;
         }
 
-        paint.setColor(color);
-        canvas.drawCircle(coordinateX, coordinateY, radius, paint);
+        if(animationType == AnimationType.WORM ){
+            paint = strokePaint;
+            paint.setStrokeWidth(3);
+            paint.setColor(color);
+            canvas.drawCircle(coordinateX, coordinateY, radius - 3, paint);
+        } else {
+            paint.setColor(color);
+            canvas.drawCircle(coordinateX, coordinateY, radius, paint);
+        }
     }
 }
